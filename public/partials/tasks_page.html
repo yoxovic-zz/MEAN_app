@@ -1,0 +1,29 @@
+<div ng-controller="todoListCtrl">
+    <h1>Todo List</h1>
+    <div class="add">
+        <a href="#" ng-click="addTodo()"> + Add New Task!</a>
+    </div>
+    <div class="list" ng-repeat="todo in todos">
+        <div class="item" ng-class="{'editing-item': editing}">
+            <input ng-model="todo.completed" type="checkbox" />
+            <label ng-hide="editing" class="editing-label">{{ todo.name }}</label>
+            <input ng-model="todo.name" ng-change="learningNgChange()" ng-show="editing" ng-blur="editing = false;" class="edititing-label"
+                type="text" />
+        </div>
+        <div class="actions">
+            <a href="#" ng-click="editing = !editing">edit</a>
+            <a href="#" ng-click="saveTodo(todo)">save</a>
+            <a href="#" ng-click="deleteTodo($index, todo)">delete</a>
+            <a href="#" ng-click="updateTodo($index, todo)">update</a>
+            <a ng-href="/todo/details/{{todo._id}}">details</a>
+        </div>
+    </div>
+
+    <div class="menu-links">
+        <ul>
+            <li><a ng-href="/todo/upload">Upload page</a></li>
+            <li><a ng-href="/todo/register">Register page</a></li>
+            <li><a ng-href="/todo/login">Login page</a></li>
+        </ul>
+    </div>
+</div>
